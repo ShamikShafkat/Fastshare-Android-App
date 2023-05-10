@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,57 +17,151 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Enter destination IP Address:"
-                android:textSize="18sp" />
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:elevation="5dp"
+                android:padding="15dp">
 
-            <EditText
-                android:id="@+id/ipAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Example: 192.168.1.1"
-                android:inputType="text" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Enter destination Port Number:"
-                android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Enter destination IP Address:"
+                        android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/portNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Example : 8080"
-                android:inputType="number" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Example: 192.168.1.1"
+                        app:helperText="required"
+                        app:helperTextTextColor="#A6281F">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Your file path is:"
-                android:textSize="18sp" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ipAddress"
+                            style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/filePath"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Not Known yet"
-                android:textSize="18sp" />
 
-            <TextView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your file name is:"
-                android:textSize="18sp" />
+                android:layout_gravity="center"
+                android:elevation="5dp"
+                android:padding="15dp">
 
-            <TextView
-                android:id="@+id/fileName"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Enter destination Port Number:"
+                        android:textAlignment="center"
+                        android:textSize="18sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Example: 192.168.1.1"
+                        app:helperText="required"
+                        app:helperTextTextColor="#A6281F">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/portNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Not Known yet"
-                android:textSize="18sp" />
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:elevation="5dp"
+                android:padding="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your file path is:"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/filePath"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Not Known yet"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:elevation="5dp"
+                android:padding="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your file name is:"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/fileName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Not Known yet"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
@@ -83,11 +178,11 @@
                 android:id="@+id/dow_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select File"
+                android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:layout_gravity="center"
-                android:gravity="center" />
+                android:gravity="center"
+                android:text="Select File" />
 
 
         </LinearLayout>
