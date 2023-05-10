@@ -31,12 +31,11 @@ import java.net.Socket;
 public class sendActivity extends AppCompatActivity {
 
     TextView ipAddress,portNumber,filePath,fileName;
-    Button media_btn,dow_btn,music_btn,send_btn;
+    Button dow_btn,send_btn;
     private sendActivity activity;
 
     private static final int SELECT_PICTURE = 1;
     private static final int SELECT_FILE = 2;
-    private static final int SELECT_MUSIC = 3;
     private static final int REQUEST_READ_EXTERNAL_STORAGE = 1;
     private String selectedImagePath;
     private String selectedImageName;
@@ -80,20 +79,12 @@ public class sendActivity extends AppCompatActivity {
     public void doWork(){
         ipAddress =findViewById(R.id.ipAddress);
         portNumber = findViewById(R.id.portNumber);
-        media_btn = findViewById(R.id.media_btn);
         dow_btn = findViewById(R.id.dow_btn);
-        music_btn = findViewById(R.id.music_btn);
         send_btn = findViewById(R.id.send_btn);
         filePath = findViewById(R.id.filePath);
         fileName = findViewById(R.id.fileName);
 
-        media_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent pickImageIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickImageIntent,SELECT_PICTURE);
-            }
-        });
+
 
         dow_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,16 +146,18 @@ public class sendActivity extends AppCompatActivity {
     }
 
     public String getFilePath(Uri uri) {
-        String[] projection = {MediaStore.Files.FileColumns.DATA};
+        String[] projection = {MediaStore.Files.FileColumns.DATA, MediaStore.Files.FileColumns.DISPLAY_NAME};
         Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA);
+        int column_index_data = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA);
+        int column_index_name = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME);
         cursor.moveToFirst();
-        String path = cursor.getString(column_index);
+        String path = cursor.getString(column_index_data);
+        String name = cursor.getString(column_index_name);
         cursor.close();
         if (path == null) {
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
-                File tempFile = createTempFileFromStream(inputStream);
+                File tempFile = createTempFileFromStream(inputStream, name);
                 return tempFile.getAbsolutePath();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -175,8 +168,8 @@ public class sendActivity extends AppCompatActivity {
         }
     }
 
-    private File createTempFileFromStream(InputStream inputStream) throws IOException {
-        File tempFile = File.createTempFile("temp", null, getCacheDir());
+    private File createTempFileFromStream(InputStream inputStream, String fileName) throws IOException {
+        File tempFile = new File(getCacheDir(), fileName);
         FileOutputStream outputStream = new FileOutputStream(tempFile);
         byte[] buffer = new byte[1024];
         int length;
@@ -188,6 +181,7 @@ public class sendActivity extends AppCompatActivity {
         return tempFile;
     }
 
+
     public String getFileName(Uri uri) {
         String filePath = getFilePath(uri);
         if(filePath==null)
@@ -197,6 +191,7 @@ public class sendActivity extends AppCompatActivity {
         File file = new File(filePath);
         return file.getName();
     }
+
 
     private class SenderRxThread extends Thread {
         private sendActivity activity;

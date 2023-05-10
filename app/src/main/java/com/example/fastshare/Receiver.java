@@ -76,9 +76,20 @@ public class Receiver {
                             public void onClick(DialogInterface dialog, int id) {
                                 byte[] temp_header =  makeHeader((short)clientSocket.getLocalPort(),(short)clientSocket.getPort(),current_header.sequenceNumber+ finalTotalBytesRead -20,current_header.acknowledgementNumber,header_syn_ack_others,window_buffer, finalCheckSum,urgentPointer);
                                 try {
-                                    dos.write(temp_header,0,20);
-                                } catch (IOException e) {
-                                    Toast.makeText(myActivity,"Couldn't send syn-ack response",Toast.LENGTH_SHORT).show();
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                dos.write(temp_header,0,20);
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }).start();
+                                }
+                                catch (Exception exception)
+                                {
+                                    Toast.makeText(myActivity,"Exception caught " + exception.toString(),Toast.LENGTH_LONG).show();
                                 }
                                 dialog.cancel();
                             }

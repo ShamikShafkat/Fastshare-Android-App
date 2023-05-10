@@ -78,31 +78,17 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <Button
-                android:id="@+id/media_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Media"
-                android:gravity="center"
-                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/dow_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Downloads"
+                android:text="Select File"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_gravity="center"
                 android:gravity="center" />
 
-            <Button
-                android:id="@+id/music_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Music"
-                android:layout_gravity="center"
-                android:gravity="center" />
 
         </LinearLayout>
 

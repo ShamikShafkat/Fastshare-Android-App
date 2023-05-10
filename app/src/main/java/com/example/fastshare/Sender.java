@@ -934,6 +934,12 @@ public class Sender {
         catch (Exception exception)
         {
             exception.printStackTrace();
+
+            activity.runOnUiThread(new Runnable() {
+                public void run() {
+                    progressDialog.dismiss();
+                }
+            });
         }
 
     }
